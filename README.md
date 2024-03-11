@@ -9,7 +9,8 @@ The only thing to do is to run:
     # for Unix, I prefer you use Makefiles
     mkdir -p build
     cd build
-    cmake .. -G "Unix Makefiles"
+    cmake .. -DLUA_BUILD_LIBRARY=ON -DLUA_BUILD_COMPILER=ON -DLUA_BUILD_INTREPRETER=ON
+    # NOTE: CMake will configure Unix Makefiles as default target, so you can just use:
     make
 ```
 
@@ -19,14 +20,21 @@ The only thing to do is to run:
     cd build
     rem In fact, I prefer that you build the project with these 2 systems in Windows
     rem For MinGW:
-    cmake -G "MinGW Makefiles"
+    cmake .. -DLUA_BUILD_LIBRARY=ON -DLUA_BUILD_COMPILER=ON -DLUA_BUILD_INTREPRETER=ON -G "MinGW Makefiles" 
     mingw32-make
     rem Or use:
     make
     rem For Visual Studio:
-    cmake ..
+    cmake .. -DLUA_BUILD_LIBRARY=ON -DLUA_BUILD_COMPILER=ON -DLUA_BUILD_INTREPRETER=ON
     rem NOTE: CMake will configure VS as default target, so you can just use:
     cmake --build . --config Release
 ```
 
 But if you wanna install it, just target CMake building to ```install```
+
+## Options
+
+The options used here are:
+1. ```LUA_BUILD_INTREPRETER``` - for building the Lua interpreter. Default to ```ON```
+2. ```LUA_BUILD_COMPILER``` - for building the Lua compiler. Default to ```ON```
+3. ```LUA_BUILD_LIBRARY``` - for building the Lua library. Default to ```ON```
